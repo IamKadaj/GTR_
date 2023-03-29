@@ -8,31 +8,28 @@
         /* Add your CSS styles here */
     </style>
     <script>
-        function searchReport(event) {
-            event.preventDefault();
-
+        function searchReport() {
             const searchInput = document.getElementById("search-input");
             const query = searchInput.value.trim();
 
             if (!query) {
                 alert("Please enter a search query.");
-                return;
+                return false;
             }
 
             const encodedQuery = encodeURIComponent(query);
             const url = `https://transparencyreport.google.com/copyright/explore?copyright_data_exploration=q:${encodedQuery};ce:owner;size:10&lu=copyright_data_exploration`;
 
-            const iframe = document.getElementById("search-results");
-            iframe.src = url;
+            window.open(url, "_blank");
+            return false;
         }
     </script>
 </head>
 <body>
     <h1>Google Transparency Report Search</h1>
-    <form id="search-form" onsubmit="searchReport(event)">
+    <form id="search-form" onsubmit="return searchReport();" target="_blank">
         <input type="text" id="search-input" placeholder="Search by owner, domain, or reporting org">
         <button type="submit">Search</button>
     </form>
-    <iframe id="search-results" src="" style="width: 100%; height: 800px; border: none;"></iframe>
 </body>
 </html>
