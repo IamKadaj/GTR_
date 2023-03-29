@@ -1,36 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Google Transparency Report Search</title>
-    <style>
-        /* Add your CSS styles here */
-    </style>
-    <script>
-        function searchReport(event) {
-            event.preventDefault();
+function searchReport(event) {
+    event.preventDefault();
 
-            const searchInput = document.getElementById("search-input");
-            const query = searchInput.value.trim();
+    const searchInput = document.getElementById("search-input");
+    const query = searchInput.value.trim();
 
-            if (!query) {
-                alert("Please enter a search query.");
-                return;
-            }
+    if (!query) {
+        alert("Please enter a search query.");
+        return;
+    }
 
-            const encodedQuery = encodeURIComponent(query);
-            const url = `https://transparencyreport.google.com/copyright/explore?copyright_data_exploration=q:${encodedQuery};ce:owner;size:10&lu=copyright_data_exploration`;
+    const encodedQuery = encodeURIComponent(query);
+    const url = `https://transparencyreport.google.com/copyright/explore?copyright_data_exploration=q:${encodedQuery};ce:owner;size:10&lu=copyright_data_exploration`;
 
-            window.open(url, "_blank");
-        }
-    </script>
-</head>
-<body>
-    <h1>Google Transparency Report Search</h1>
-    <form id="search-form" onsubmit="searchReport(event)">
-        <input type="text" id="search-input" placeholder="Search by owner, domain, or reporting org">
-        <button type="submit">Search</button>
-    </form>
-</body>
-</html>
+    // Navigate to the search result page instead of opening it in a new tab
+    window.location.href = url;
+}
